@@ -29,6 +29,19 @@
 @implementation SPLockScreen
 @synthesize delegate,selectedCell,overLay,oldCellIndex,currentCellIndex,drawnLines,finalLines,cellsInOrder,allowClosedPattern;
 
+
+- (BOOL)isAccessibilityElement
+{
+    return YES;
+}
+
+
+- (UIAccessibilityTraits)accessibilityTraits
+{
+    return UIAccessibilityTraitAllowsDirectInteraction;
+}
+
+
 - (id)init{
 	CGRect frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width);
 	self = [super initWithFrame:frame];
