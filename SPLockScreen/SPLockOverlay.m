@@ -38,6 +38,7 @@
 		{			
 			CGContextMoveToPoint(context, line.fromPoint.x, line.fromPoint.y);
 			CGContextAddLineToPoint(context, line.toPoint.x, line.toPoint.y);
+            CGContextSetLineCap(context, kCGLineCapRound);
 			CGContextStrokePath(context);
 			
 			CGFloat nodeRadius = 14.0;
