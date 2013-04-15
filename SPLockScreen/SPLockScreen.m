@@ -153,10 +153,14 @@
 {
 	self.oldCellIndex = self.currentCellIndex;
 	NSInteger cellPos = [self indexForPoint:point];
-	
-	if(cellPos >=0 && cellPos != self.oldCellIndex)
-		[self.cellsInOrder addObject:@(self.currentCellIndex)];
-	
+
+	if(cellPos >=0 && cellPos != self.oldCellIndex) {
+        if ( YES == self.allowClosedPattern || NO == [self.cellsInOrder containsObject:@(self.currentCellIndex)] ) {
+            [self.cellsInOrder addObject:@(self.currentCellIndex)];
+        }
+    }
+
+
 	if(cellPos < 0 && self.oldCellIndex < 0) return;
 	
 	else if(cellPos < 0) {
