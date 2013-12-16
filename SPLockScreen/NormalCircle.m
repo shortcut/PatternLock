@@ -36,26 +36,26 @@
 
 - (void)drawRect:(CGRect)rect
 {
-	CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextRef context = UIGraphicsGetCurrentContext();
 	self.cacheContext = context;
 	CGFloat lineWidth = 5.0;
 	CGRect rectToDraw = CGRectMake(rect.origin.x+lineWidth, rect.origin.y+lineWidth, rect.size.width-2*lineWidth, rect.size.height-2*lineWidth);
 	CGContextSetLineWidth(context, lineWidth);
 	CGContextSetStrokeColorWithColor(context, kOuterColor.CGColor);
-	CGContextStrokeEllipseInRect(context, rectToDraw);
-	
+    CGContextStrokeRectWithWidth(context, rectToDraw, lineWidth);
+
 	// Fill inner part
 	CGRect innerRect = CGRectInset(rectToDraw,1, 1);
 	CGContextSetFillColorWithColor(context, kInnerColor.CGColor);
-	CGContextFillEllipseInRect(context, innerRect);
-	
+    CGContextFillRect(context, innerRect);
+
 	if(self.selected == NO)
 		return;
-	
+
 	// For selected View
 	CGRect smallerRect = CGRectInset(rectToDraw,10, 10);
 	CGContextSetFillColorWithColor(context, kHighlightColor.CGColor);
-	CGContextFillEllipseInRect(context, smallerRect);
+    CGContextFillRect(context, smallerRect);
 }
 
 - (void)highlightCell
